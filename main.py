@@ -42,3 +42,53 @@ else:
     sum = sum + (1 + 1 / N) ** N
 print(f"Сумма: {format(sum, '.2f')}")
 
+# Доп. Задайте список из N элементов, заполненных числами из промежутка [-N, N].
+# Найдите произведение элементов на указанных позициях. Позиции хранятся в
+# файле file.txt в одной строке одно число.
+N = int(input('Введите целое число N: '))
+from random import randint
+mas = [randint(-1*N, N) for _ in range(N)]
+print(mas)
+data = open('file.txt', 'r')
+for line in data:
+    buf = line.split(" ")
+    i = int(buf[0])
+    j = int(buf[1])
+    pr = mas[i] * mas[j]
+    print(f"Произведение [{i}] и [{j}] элемент:{pr}")
+data.close()
+
+# Доп. Реализуйте алгоритм перемешивания списка.
+N = int(input('Введите целое число N: '))
+from random import randint
+massiv = [randint(-100, 100) for _ in range(N)]
+print(massiv)
+
+mas = []
+mas.append(randint(0, N-1))
+for _ in range(N+1):
+    number = randint(0, N-1)
+    for i in range(len(mas)):
+        if number in mas:
+            number = randint(0, N - 1)
+            i = 0
+        else:
+            mas.append(number)
+            i = len(mas)
+print(mas)
+print('[', end = '')
+for j in range(0, N-1):
+    print(massiv[mas[j]], end=',')
+else:
+    print(massiv[mas[N-1]], end=']')
+
+# Доп. Даны два массива. Надо вернуть их пересечение
+mas_A = input("Введите через пробел значение первого массива: ").split()
+mas_B = input("Введите через пробел значение второго массива: ").split()
+mas_Rez  = []
+for i in mas_A:
+    for j in mas_B:
+        if i == j:
+            mas_Rez.append(i)
+            break
+print(mas_Rez)
